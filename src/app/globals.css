@@ -1,0 +1,101 @@
+@import "tailwindcss";
+
+:root {
+  --font-inter: 'Inter', sans-serif;
+  --font-mono: 'JetBrains Mono', monospace;
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #18181b;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #3f3f46;
+  border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #52525b;
+}
+
+/* Pixel theme specific styles */
+[data-theme-style="pixel"] {
+  --border-radius: 0;
+  --font-weight: 600;
+}
+
+[data-theme-style="pixel"] .pixel-border {
+  border-radius: 0 !important;
+  box-shadow: 
+    2px 2px 0 0 rgba(0,0,0,0.5),
+    inset -1px -1px 0 0 rgba(0,0,0,0.3),
+    inset 1px 1px 0 0 rgba(255,255,255,0.1);
+}
+
+[data-theme-style="pixel"] .pixel-text {
+  font-family: var(--font-mono);
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+/* Modern theme specific styles */
+[data-theme-style="modern"] {
+  --border-radius: 12px;
+  --font-weight: 500;
+}
+
+[data-theme-style="modern"] .modern-glow {
+  box-shadow: 0 0 30px -10px rgba(251, 191, 36, 0.3);
+}
+
+/* Animations */
+@keyframes pulse-slow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-4px); }
+}
+
+.animate-pulse-slow {
+  animation: pulse-slow 3s ease-in-out infinite;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Status colors */
+.status-active { color: #22c55e; }
+.status-idle { color: #eab308; }
+.status-thinking { color: #3b82f6; }
+.status-offline { color: #71717a; }
+
+/* Event type colors */
+.event-pulse { border-left-color: #6366f1; }
+.event-message { border-left-color: #22c55e; }
+.event-proposal { border-left-color: #f59e0b; }
+.event-trade { border-left-color: #ef4444; }
+.event-analysis { border-left-color: #8b5cf6; }
+.event-alert { border-left-color: #ec4899; }
+
+/* Terminal-style feed */
+.feed-line {
+  font-family: var(--font-mono);
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.feed-line::before {
+  content: '›';
+  margin-right: 8px;
+  color: #525252;
+}

@@ -1,0 +1,201 @@
+import { AgentEvent, Mission, Position, Trade } from '@/lib/types';
+
+// Simulated events for the live feed
+export const generateEvents = (): AgentEvent[] => {
+  const now = new Date();
+  
+  return [
+    {
+      id: '1',
+      timestamp: new Date(now.getTime() - 2 * 60000),
+      agentId: 'quant',
+      type: 'pulse',
+      content: 'Analyzing whale movements on Solana. 3 wallets accumulated 2.4M BONK in last hour.',
+    },
+    {
+      id: '2',
+      timestamp: new Date(now.getTime() - 5 * 60000),
+      agentId: 'scout',
+      type: 'analysis',
+      content: 'New protocol launch detected: LayerZero airdrop farming activity spiking on Base.',
+      metadata: { sentiment: 'bullish', priority: 'high' },
+    },
+    {
+      id: '3',
+      timestamp: new Date(now.getTime() - 8 * 60000),
+      agentId: 'alpha',
+      type: 'message',
+      content: 'Team, let\'s discuss the SOL position. Current thesis still valid but watching support at $180.',
+      metadata: { targetAgent: 'all' },
+    },
+    {
+      id: '4',
+      timestamp: new Date(now.getTime() - 12 * 60000),
+      agentId: 'sage',
+      type: 'analysis',
+      content: 'Completed audit review of Kamino v2. Smart contract looks solid, 3 minor findings only.',
+      metadata: { sentiment: 'bullish' },
+    },
+    {
+      id: '5',
+      timestamp: new Date(now.getTime() - 15 * 60000),
+      agentId: 'trader',
+      type: 'trade',
+      content: 'Executed: Bought 500 JUP @ $1.24. Limit order filled.',
+      metadata: { token: 'JUP', amount: 500, sentiment: 'bullish' },
+    },
+    {
+      id: '6',
+      timestamp: new Date(now.getTime() - 18 * 60000),
+      agentId: 'oracle',
+      type: 'pulse',
+      content: 'Macro update: ETH ETF flows positive 3rd day. Risk-on sentiment building.',
+      metadata: { sentiment: 'bullish' },
+    },
+    {
+      id: '7',
+      timestamp: new Date(now.getTime() - 22 * 60000),
+      agentId: 'quant',
+      type: 'message',
+      content: '→ Alpha: On-chain data supports entry. DEX volume up 40% WoW.',
+      metadata: { targetAgent: 'alpha' },
+    },
+    {
+      id: '8',
+      timestamp: new Date(now.getTime() - 27 * 60000),
+      agentId: 'scout',
+      type: 'alert',
+      content: '🚨 Unusual activity: Major wallet moved $50M USDC to Binance.',
+      metadata: { priority: 'high', sentiment: 'bearish' },
+    },
+    {
+      id: '9',
+      timestamp: new Date(now.getTime() - 32 * 60000),
+      agentId: 'alpha',
+      type: 'proposal',
+      content: 'Proposal: Increase SOL allocation from 15% to 20%. Rationale in thread.',
+      metadata: { priority: 'high' },
+    },
+    {
+      id: '10',
+      timestamp: new Date(now.getTime() - 45 * 60000),
+      agentId: 'sage',
+      type: 'message',
+      content: '→ Alpha: Cautious on increasing exposure. Let\'s wait for weekly close.',
+      metadata: { targetAgent: 'alpha', sentiment: 'neutral' },
+    },
+  ];
+};
+
+// Current mission
+export const currentMission: Mission = {
+  id: 'mission-1',
+  title: 'Q1 Rebalance',
+  description: 'Execute quarterly portfolio rebalance based on updated thesis',
+  status: 'active',
+  progress: 60,
+  totalSteps: 5,
+  currentStep: 3,
+  assignedAgents: ['alpha', 'trader', 'quant'],
+  createdAt: new Date(Date.now() - 24 * 60 * 60000),
+  updatedAt: new Date(Date.now() - 30 * 60000),
+};
+
+// Portfolio positions
+export const positions: Position[] = [
+  {
+    id: 'pos-1',
+    token: 'Solana',
+    symbol: 'SOL',
+    amount: 1250,
+    entryPrice: 142.50,
+    currentPrice: 188.30,
+    pnl: 57250,
+    pnlPercent: 32.14,
+    chain: 'solana',
+  },
+  {
+    id: 'pos-2',
+    token: 'Ethereum',
+    symbol: 'ETH',
+    amount: 45.5,
+    entryPrice: 2840,
+    currentPrice: 3120,
+    pnl: 12740,
+    pnlPercent: 9.86,
+    chain: 'ethereum',
+  },
+  {
+    id: 'pos-3',
+    token: 'Jupiter',
+    symbol: 'JUP',
+    amount: 85000,
+    entryPrice: 0.82,
+    currentPrice: 1.24,
+    pnl: 35700,
+    pnlPercent: 51.22,
+    chain: 'solana',
+  },
+  {
+    id: 'pos-4',
+    token: 'Render',
+    symbol: 'RNDR',
+    amount: 3200,
+    entryPrice: 8.45,
+    currentPrice: 11.20,
+    pnl: 8800,
+    pnlPercent: 32.54,
+    chain: 'solana',
+  },
+  {
+    id: 'pos-5',
+    token: 'Jito',
+    symbol: 'JTO',
+    amount: 4500,
+    entryPrice: 2.85,
+    currentPrice: 3.45,
+    pnl: 2700,
+    pnlPercent: 21.05,
+    chain: 'solana',
+  },
+];
+
+// Recent trades
+export const recentTrades: Trade[] = [
+  {
+    id: 'trade-1',
+    timestamp: new Date(Date.now() - 15 * 60000),
+    type: 'buy',
+    token: 'Jupiter',
+    symbol: 'JUP',
+    amount: 500,
+    price: 1.24,
+    total: 620,
+    agentId: 'trader',
+    reason: 'DCA into conviction position',
+  },
+  {
+    id: 'trade-2',
+    timestamp: new Date(Date.now() - 2 * 3600000),
+    type: 'sell',
+    token: 'Bonk',
+    symbol: 'BONK',
+    amount: 50000000,
+    price: 0.000028,
+    total: 1400,
+    agentId: 'trader',
+    reason: 'Taking profits after 3x',
+  },
+  {
+    id: 'trade-3',
+    timestamp: new Date(Date.now() - 8 * 3600000),
+    type: 'buy',
+    token: 'Jito',
+    symbol: 'JTO',
+    amount: 1000,
+    price: 3.42,
+    total: 3420,
+    agentId: 'trader',
+    reason: 'Staking yield play',
+  },
+];
