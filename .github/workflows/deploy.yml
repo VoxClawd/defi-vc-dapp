@@ -30,8 +30,10 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build
-        run: npm run build
+      - name: Build (static export, no API routes)
+        run: |
+          rm -rf src/app/api
+          STATIC_EXPORT=true npm run build
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
